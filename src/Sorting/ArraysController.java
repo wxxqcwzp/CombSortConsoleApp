@@ -1,12 +1,14 @@
 package Sorting;
 
+import Utils.Input;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 
 public class ArraysController {
 
-    private CombSort sorter;
+    private final CombSort sorter;
 
     public ArraysController(CombSort sorter) {
         this.sorter = sorter;
@@ -19,6 +21,7 @@ public class ArraysController {
 
     /**
      * Сохранение в выхоной файл формата csv посредствам метода append из класса FileWriter
+     *
      * @param filePath строковый путь к файлу
      */
     public void saveArrays(String filePath) {
@@ -27,6 +30,8 @@ public class ArraysController {
             System.err.println("Сначала нужно отсортировать массив");
             return;
         }
+
+        if (Input.getInt("Такой файл уже существует\nПерезаписать?(Нет - 0/Да - 1):", 0, 1) == 0) return;
 
         try (FileWriter writer = new FileWriter(filePath)) {
 
@@ -44,3 +49,6 @@ public class ArraysController {
     }
 
 }
+
+
+
